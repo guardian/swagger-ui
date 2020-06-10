@@ -105,7 +105,6 @@ export default class Operations extends React.Component {
             }).toArray()
           }
 
-          { taggedOps.size < 1 ? <h3> No operations defined in spec! </h3> : null }
         </div>
     )
   }
