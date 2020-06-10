@@ -298,7 +298,7 @@ export const mutatedRequestFor = (state, path, method) => {
 
 export const allowTryItOutFor = () => {
   // This is just a hook for now.
-  return true
+  return false
 }
 
 export const parameterWithMetaByIdentity = (state, pathMethod, param) => {

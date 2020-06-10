@@ -91,7 +91,6 @@ export default class ParamBody extends PureComponent {
 
   render() {
     let {
-      onChangeConsumes,
       param,
       isExecute,
       specSelectors,
@@ -100,15 +99,11 @@ export default class ParamBody extends PureComponent {
       getComponent,
     } = this.props
 
-    const Button = getComponent("Button")
     const TextArea = getComponent("TextArea")
     const HighlightCode = getComponent("highlightCode")
-    const ContentType = getComponent("contentType")
     // for domains where specSelectors not passed
     let parameter = specSelectors ? specSelectors.parameterWithMetaByIdentity(pathMethod, param) : param
     let errors = parameter.get("errors", List())
-    let consumesValue = specSelectors.contentTypeValues(pathMethod).get("requestContentType")
-    let consumes = this.props.consumes && this.props.consumes.size ? this.props.consumes : ParamBody.defaultProp.consumes
 
     let { value, isEditBox } = this.state
 
@@ -120,21 +115,6 @@ export default class ParamBody extends PureComponent {
             : (value && <HighlightCode className="body-param__example"
                                value={ value }/>)
         }
-        <div className="body-param-options">
-          {
-            !isExecute ? null
-                       : <div className="body-param-edit">
-                        <Button className={isEditBox ? "btn cancel body-param__example-edit" : "btn edit body-param__example-edit"}
-                                 onClick={this.toggleIsEditBox}>{ isEditBox ? "Cancel" : "Edit"}
-                         </Button>
-                         </div>
-          }
-          <label htmlFor="">
-            <span>Parameter content type</span>
-            <ContentType value={ consumesValue } contentTypes={ consumes } onChange={onChangeConsumes} className="body-param-content-type" />
-          </label>
-        </div>
-
       </div>
     )
 
